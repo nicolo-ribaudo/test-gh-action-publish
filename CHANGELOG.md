@@ -20,4 +20,5 @@ See [`eslint-plugin-babel`'s releases](https://github.com/babel/eslint-plugin-ba
 <!-- DO NOT CHANGE THESE COMMENTS - See .github/actions/trigger-github-release/update-changelog.js -->
 <!-- insert-new-changelog-here -->
 
+
 ## v7.0.0-alpha.1 (2017-03-02)
