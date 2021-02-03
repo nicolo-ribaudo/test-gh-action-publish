@@ -26,7 +26,7 @@ jobs:
       - name: This release will publish the following packages
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            yarn release-tool version --dry
+            yarn release-tool version --dry patch
           else
             git diff --name-only HEAD^..HEAD
           fi;
@@ -62,7 +62,7 @@ jobs:
           git config user.name "Babel Bot"
           git config user.email "babel-bot@users.noreply.github.com"
       - name: Create new version
-        run: yarn release-tool version -f @babel/standalone --yes
+        run: yarn release-tool version -f @babel/standalone --yes patch
       - name: Output new tag
         run: |
           tag=$(git describe --abbrev=0)
