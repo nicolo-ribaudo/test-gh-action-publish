@@ -55,6 +55,8 @@ jobs:
     environment: npm
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Set @babel-bot as committer
         run: |
           git config user.name "Babel Bot"
