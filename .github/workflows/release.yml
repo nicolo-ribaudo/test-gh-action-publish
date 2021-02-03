@@ -77,16 +77,21 @@ jobs:
 
           git push "https://babel-bot:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:"$branch" --follow-tags
 
+  echo:
+    name: Log
+    steps:
+      - run: |
+          echo "${{always()}}"
+          echo "${{needs.build.status}}"
+          echo "${{needs.git-version.status}}"
+
   npm-release:
     name: Publish release on npm
     runs-on: ubuntu-latest
     needs: [git-version, build]
     environment: npm
     # The default condition is success(), but this is false when the previous job is skipped
-    if: |
-      always() &&
-      needs.build.status == 'success' &&
-      (needs.git-version.status == 'success' || needs.git-version.status == 'skipped')
+    if: always() && needs.build.status == 'success' && (needs.git-version.status == 'success' || needs.git-version.status == 'skipped')
     steps:
       - uses: actions/checkout@v2
         with:
