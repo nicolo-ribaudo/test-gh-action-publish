@@ -77,12 +77,12 @@ jobs:
 
           git push "https://babel-bot:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:"$branch" --follow-tags
 
-  echo:
+  log:
     name: Log
-     runs-on: ubuntu-latest
-     needs: git-version
-     steps:
-       - run: echo "${{ needs.git-version.outputs.branch }}"
+    runs-on: ubuntu-latest
+    needs: git-version
+    steps:
+      - run: echo "${{ needs.git-version.outputs.branch }}"
 
   npm-release:
     name: Publish release on npm
