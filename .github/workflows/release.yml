@@ -81,6 +81,7 @@ jobs:
     name: Log
     needs: [git-version, build]
     runs-on: ubuntu-latest
+    if: always()
     steps:
       - run: |
           echo "${{needs.build.status}}"
