@@ -82,7 +82,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: [git-version, build]
     environment: npm
-    if: needs.build.status == 'success' && (needs.git-version.status == 'success' || needs.git-version.status == 'skipped')
+    # The default condition is success(), but this is false when the previous job is skipped
+    if: |
+      always() &&
+      needs.build.status == 'success' &&
+      (needs.git-version.status == 'success' || needs.git-version.status == 'skipped')
     steps:
       - uses: actions/checkout@v2
         with:
