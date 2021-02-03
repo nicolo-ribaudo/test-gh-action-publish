@@ -75,7 +75,7 @@ jobs:
           echo $branch
           echo "::set-output name=branch::$branch"
 
-          git push "https://babel-bot:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" "$branch" --follow-tags
+          git push "https://babel-bot:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" :"$branch" --follow-tags
 
   npm-release:
     name: Publish release on npm
@@ -168,4 +168,4 @@ jobs:
 
       - name: Push to GitHub
         run: |
-          git push "https://babel-bot:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" main --follow-tags
+          git push "https://babel-bot:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" :main --follow-tags
