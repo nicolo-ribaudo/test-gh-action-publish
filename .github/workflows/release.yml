@@ -79,6 +79,7 @@ jobs:
 
   echo:
     name: Log
+    needs: [git-version, build]
     steps:
       - run: |
           echo "${{always()}}"
