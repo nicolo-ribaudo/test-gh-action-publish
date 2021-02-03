@@ -82,7 +82,6 @@ jobs:
     needs: [git-version, build]
     steps:
       - run: |
-          echo "${{always()}}"
           echo "${{needs.build.status}}"
           echo "${{needs.git-version.status}}"
 
@@ -92,7 +91,7 @@ jobs:
     needs: [git-version, build]
     environment: npm
     # The default condition is success(), but this is false when the previous job is skipped
-    if: always() && needs.build.status == 'success' && (needs.git-version.status == 'success' || needs.git-version.status == 'skipped')
+    if: needs.build.status == 'success' && (needs.git-version.status == 'success' || needs.git-version.status == 'skipped')
     steps:
       - uses: actions/checkout@v2
         with:
