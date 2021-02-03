@@ -80,6 +80,7 @@ jobs:
   echo:
     name: Log
     needs: [git-version, build]
+    runs-on: ubuntu-latest
     steps:
       - run: |
           echo "${{needs.build.status}}"
