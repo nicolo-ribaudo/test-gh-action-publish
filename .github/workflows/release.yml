@@ -33,16 +33,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build and Test
-        run: make prepublish
+        run: |
+          mkdir ./packages/test-package-auto-release/lib
+          echo "// OK" > ./packages/test-package-auto-release/lib/ok.js
       - uses: actions/upload-artifact@v2
         with:
           name: build-artifact
           path: |
-            codemods/*/lib/**/*
-            eslint/*/lib/**/*
             packages/*/lib/**/*
-            packages/babel-standalone/*.js
-            !**/node_modules/**
 
   git-version:
     name: Git tag and commit
