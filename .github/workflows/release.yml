@@ -96,7 +96,7 @@ jobs:
           name: build-artifact
 
       - name: Publish to npm
-        run: yarn release-tool publish --yes
+        run: echo "OK!" # yarn release-tool publish --yes
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
