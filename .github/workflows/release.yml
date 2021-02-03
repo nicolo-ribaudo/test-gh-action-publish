@@ -65,7 +65,7 @@ jobs:
           echo "::set-output name=tag::$tag"
       - name: Push to GitHub
         run: |
-          git push "https://babel-bot:${{ secrets.BOT_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" main --follow-tags
+          git push "https://babel-bot:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" main --follow-tags
 
   npm-release:
     name: Publish release on npm
@@ -113,7 +113,7 @@ jobs:
         with:
           tag: ${{ steps.tags.outputs.new }}
           changelog: ${{ steps.changelog.outputs.changelog }}
-          token: ${{ secrets.BOT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check if releasing from main
         id: is_main
@@ -133,4 +133,4 @@ jobs:
           git add CHANGELOG.md
           git -c user.name="Babel Bot" -c user.email="babel-bot@users.noreply.github.com" \
             commit -m "Add ${{ steps.tags.outputs.new }} to CHANGELOG.md [skip ci]" --no-verify --quiet
-          git push "https://babel-bot:${{ secrets.BOT_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" main
+          git push "https://babel-bot:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" main
