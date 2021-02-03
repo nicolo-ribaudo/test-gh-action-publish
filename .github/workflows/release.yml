@@ -22,9 +22,14 @@ jobs:
       - name: Checkout the new tag
         uses: actions/checkout@v2
         with:
-          fetch-depth: 2
+          fetch-depth: 0
       - name: This release will publish the following packages
-        run: git diff --name-only HEAD^..HEAD
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            yarn release-tool version --dry
+          else
+            git diff --name-only HEAD^..HEAD
+          fi;
 
   build:
     name: Build and Test
